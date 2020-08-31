@@ -67,11 +67,11 @@
         <table
                 tableName="userinfo"
                 domainObjectName="Userinfo"
-                enableCountByExample="false"
-                enableUpdateByExample="false"
-                enableDeleteByExample="false"
-                enableSelectByExample="false"
-                selectByExampleQueryId="false">
+                enableCountByExample="true"
+                enableUpdateByExample="true"
+                enableDeleteByExample="true"
+                enableSelectByExample="true"
+                selectByExampleQueryId="true">
 
         </table>
     </context>

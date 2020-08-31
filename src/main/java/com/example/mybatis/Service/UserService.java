@@ -1,6 +1,7 @@
 package com.example.mybatis.Service;
 
 import com.example.mybatis.entity.Userinfo;
+import com.example.mybatis.entity.UserinfoExample;
 import com.example.mybatis.mapper.UserinfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,25 @@ public class UserService {
     private UserinfoMapper userinfoMapper;
 
     @Transactional
-    public List<Userinfo> selectAll() {
-        return userinfoMapper.selectAll();
+    public List<Userinfo> userinfoSelectAll() {
+        UserinfoExample ex = new UserinfoExample();
+        UserinfoExample.Criteria cr = ex.createCriteria();
+        cr.andNameLike("%" + "哈" + "%");
+//        cr.andNameIsNull();
+//        ex.setOrderByClause("username asc,email desc");
+        return userinfoMapper.selectByExample(ex);
+    }
+
+    /***
+     * 总数方法
+     * @return
+     */
+    @Transactional
+    public long count() {
+        UserinfoExample example = new UserinfoExample();
+        UserinfoExample.Criteria criteria = example.createCriteria();
+        criteria.andNameLike("%" + "哈" + "%");
+        return userinfoMapper.countByExample(example);
     }
 
     /// 新增
@@ -23,6 +41,7 @@ public class UserService {
     public int userserviceAdd(Userinfo userinfo) {
         return userinfoMapper.insertSelective(userinfo);
     }
+
     /// 编辑
     @Transactional
     public int userserviceUpdata(Userinfo userinfo) {

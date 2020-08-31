@@ -3,11 +3,16 @@ package com.example.mybatis.controller;
 
 import com.example.mybatis.Service.UserService;
 import com.example.mybatis.Service.UserinfoService;
+import com.example.mybatis.common.Result;
+import com.example.mybatis.common.ServerResult;
 import com.example.mybatis.entity.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+
+import static javafx.scene.input.KeyCode.T;
 
 @RestController
 public class MybatisController {
@@ -18,9 +23,12 @@ public class MybatisController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getAllUserinfo")
+    @GetMapping("/userinfo/all")
     public Object userinfo() {
-        return userService.selectAll();
+        List<Userinfo> aa = userService.userinfoSelectAll();
+        ServerResult<Object> serverResult = ServerResult.defaultSuccess(aa);
+        return serverResult;
+
     }
 
     /***
@@ -33,13 +41,21 @@ public class MybatisController {
     @GetMapping("/userinfo/save")
     // 注意这里的参数写ModelAttribute
     public Object userinfoAdd(@ModelAttribute Userinfo userinfo) {
+        int re;
         if(userinfo.getId() == null){
             userinfo.setTime(new Date());
-            return userService.userserviceAdd(userinfo);
+            re = userService.userserviceAdd(userinfo);
         } else {
             userinfo.setTime(null);
-            return userService.userserviceUpdata(userinfo);
+            re =  userService.userserviceUpdata(userinfo);
         }
+        ServerResult<String> serverResult;
+        if(re > 0) {
+            serverResult = ServerResult.defaultSuccess(null);
+        } else {
+            serverResult = ServerResult.defaultFailure();
+        }
+        return serverResult;
     }
 
     /**
