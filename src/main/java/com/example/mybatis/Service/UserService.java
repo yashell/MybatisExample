@@ -28,4 +28,18 @@ public class UserService {
     public int userserviceUpdata(Userinfo userinfo) {
         return userinfoMapper.updateByPrimaryKeySelective(userinfo);
     }
+
+    /// 查-单条
+    @Transactional
+    public Userinfo userserviceSelectByKey(int id) {
+        return userinfoMapper.selectByPrimaryKey(id);
+    }
+
+    /// 删除
+    @Transactional
+    public int userserviceDelete(int id) {
+        return userinfoMapper.deleteByPrimaryKey(id);
+    }
+
+
 }

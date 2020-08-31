@@ -5,9 +5,7 @@ import com.example.mybatis.Service.UserService;
 import com.example.mybatis.Service.UserinfoService;
 import com.example.mybatis.entity.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -43,4 +41,29 @@ public class MybatisController {
             return userService.userserviceUpdata(userinfo);
         }
     }
+
+    /**
+     * 查单条
+     * @param id
+     * @return
+     * http://localhost:1111/userinfo/selectbykey?id=27
+     */
+    @GetMapping("/userinfo/selectbykey")
+    public Object userinfoSelectByKey(@RequestParam int id) {
+        return userService.userserviceSelectByKey(id);
+    }
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     * http://localhost:1111/userinfo/delete?id=27
+     */
+    @GetMapping("/userinfo/delete")
+    public int userinfoDelete(@RequestParam int id) {
+        return userService.userserviceDelete(id);
+    }
+
+
+
 }
