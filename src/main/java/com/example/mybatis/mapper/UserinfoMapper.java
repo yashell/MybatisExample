@@ -22,6 +22,9 @@ public interface UserinfoMapper {
     @Select("select id, name, sex, score, time from userinfo where id = #{id}")
     Userinfo selectBykeyNativeSQL(int id);
 
+    @Select("select id, name, sex, score, time from userinfo where name like concat('%',#{name},'%')")
+    List<Userinfo> selectByNameNativeSQL(String name);
+
     Userinfo selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Userinfo record, @Param("example") UserinfoExample example);

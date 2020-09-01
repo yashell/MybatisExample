@@ -54,11 +54,16 @@ public class UserService {
     public Userinfo userserviceSelectByKey(int id) {
         return userinfoMapper.selectByPrimaryKey(id);
     }
-    
+
     /// 查-单条-原生sql方法
     @Transactional
     public Userinfo userserviceSelectByKeyNativeSQL(int id) {
         return userinfoMapper.selectBykeyNativeSQL(id);
+    }
+    /// 查-单条-原生sql方法
+    @Transactional
+    public List<Userinfo> userserviceSelectByNameNativeSQL(String name) {
+        return userinfoMapper.selectByNameNativeSQL(name);
     }
 
     /// 删除

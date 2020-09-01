@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+
 import static javafx.scene.input.KeyCode.T;
 
 @RestController
@@ -79,6 +80,19 @@ public class MybatisController {
     @GetMapping("/userinfo/selectbykey-sql")
     public Object userSelectBySQL(@RequestParam int id) {
         Userinfo aa = userService.userserviceSelectByKeyNativeSQL(id);
+        ServerResult<Object> serverResult = ServerResult.defaultSuccess(aa);
+        return serverResult;
+    }
+
+    /***
+     * 查单条 -sql-name
+     * @param name
+     * @return
+     * http://localhost:1111/userinfo/selectbyName-sql?name=%E5%93%88
+     */
+    @GetMapping("/userinfo/selectbyName-sql")
+    public Object userSelectBySQL(@RequestParam String name) {
+        List<Userinfo> aa = userService.userserviceSelectByNameNativeSQL(name);
         ServerResult<Object> serverResult = ServerResult.defaultSuccess(aa);
         return serverResult;
     }
