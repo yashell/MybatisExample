@@ -24,6 +24,7 @@ public class UserService {
         return userinfoMapper.selectByExample(ex);
     }
 
+
     /***
      * 总数方法
      * @return
@@ -52,6 +53,12 @@ public class UserService {
     @Transactional
     public Userinfo userserviceSelectByKey(int id) {
         return userinfoMapper.selectByPrimaryKey(id);
+    }
+    
+    /// 查-单条-原生sql方法
+    @Transactional
+    public Userinfo userserviceSelectByKeyNativeSQL(int id) {
+        return userinfoMapper.selectBykeyNativeSQL(id);
     }
 
     /// 删除

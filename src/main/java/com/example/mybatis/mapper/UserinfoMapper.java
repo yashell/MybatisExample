@@ -4,6 +4,7 @@ import com.example.mybatis.entity.Userinfo;
 import com.example.mybatis.entity.UserinfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface UserinfoMapper {
     long countByExample(UserinfoExample example);
@@ -17,6 +18,9 @@ public interface UserinfoMapper {
     int insertSelective(Userinfo record);
 
     List<Userinfo> selectByExample(UserinfoExample example);
+
+    @Select("select id, name, sex, score, time from userinfo where id = #{id}")
+    Userinfo selectBykeyNativeSQL(int id);
 
     Userinfo selectByPrimaryKey(Integer id);
 

@@ -69,6 +69,20 @@ public class MybatisController {
         return userService.userserviceSelectByKey(id);
     }
 
+
+    /***
+     * 查单条 -sql
+     * @param id
+     * @return
+     * http://localhost:1111/userinfo/selectbykey-sql?id=27
+     */
+    @GetMapping("/userinfo/selectbykey-sql")
+    public Object userSelectBySQL(@RequestParam int id) {
+        Userinfo aa = userService.userserviceSelectByKeyNativeSQL(id);
+        ServerResult<Object> serverResult = ServerResult.defaultSuccess(aa);
+        return serverResult;
+    }
+
     /**
      * 删除
      * @param id
