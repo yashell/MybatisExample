@@ -103,8 +103,8 @@ public class MybatisController {
      * @return
      * http://localhost:1111/userinfo/delete?id=27
      */
-    @GetMapping("/userinfo/delete")
-    public int userinfoDelete(@RequestParam int id) {
+    @GetMapping("/userinfo/delete/{id}")
+    public int userinfoDelete(@PathVariable("id") int id) {
         return userService.userserviceDelete(id);
     }
 
