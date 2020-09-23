@@ -1,7 +1,7 @@
 package com.example.mybatis.Service;
 
-import com.example.mybatis.entity.Userinfo;
-import com.example.mybatis.entity.UserinfoExample;
+import com.example.mybatis.model.Userinfo;
+import com.example.mybatis.model.UserinfoExample;
 import com.example.mybatis.mapper.UserinfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,7 +63,25 @@ public class UserService {
     /// 查-单条-原生sql方法
     @Transactional
     public List<Userinfo> userserviceSelectByNameNativeSQL(String name) {
-        return userinfoMapper.selectByNameNativeSQL(name);
+//        //分页插件
+//        PageHelper pageHelper = new PageHelper();
+//        Properties properties = new Properties();
+//        properties.setProperty("reasonable", "true");
+//        properties.setProperty("supportMethodsArguments", "true");
+//        properties.setProperty("returnPageInfo", "check");
+//        properties.setProperty("params", "count=countSql");
+//        pageHelper.setProperties(properties);
+//
+//        PageInterceptor interceptor = new PageInterceptor();
+//        interceptor.setProperties(properties);
+
+
+//        PageHelper.startPage(1, 3);
+        List<Userinfo> list =userinfoMapper.selectByNameNativeSQL(name);
+
+
+
+        return list;
     }
 
     /// 删除

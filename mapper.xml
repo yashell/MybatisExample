@@ -14,6 +14,19 @@
             <property name="suppressDate" value="true"/>
             <!-- 是否去除自动生成的注释 true：是 ： false:否，因为注释是英文的，一般选true -->
             <property name="suppressAllComments" value="true"/>
+            <property name="plugins" value="true">
+                <set>
+                    <!--配置pageHelper 分页插件-->
+                    <bean class="com.github.pagehelper.PageInterceptor">
+                        <property name="properties">
+                            <props>
+                                <!--方言：-->
+                                <prop key="helperDialect">mysql</prop>
+                            </props>
+                        </property>
+                    </bean>
+                </set>
+            </property>
         </commentGenerator>
         <!--配置数据库连接信息  todo-->
         <jdbcConnection
@@ -28,7 +41,7 @@
         </javaTypeResolver>
         <!-- 生成实体类的包名和位置 targetPackage指定model类的包名 todo-->
         <javaModelGenerator
-                targetPackage="com.example.mybatis.entity"
+                targetPackage="com.example.mybatis.model"
                 targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>

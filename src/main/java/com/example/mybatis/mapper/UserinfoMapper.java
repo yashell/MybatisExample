@@ -1,7 +1,7 @@
 package com.example.mybatis.mapper;
 
-import com.example.mybatis.entity.Userinfo;
-import com.example.mybatis.entity.UserinfoExample;
+import com.example.mybatis.model.Userinfo;
+import com.example.mybatis.model.UserinfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

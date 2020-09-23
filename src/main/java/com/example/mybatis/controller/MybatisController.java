@@ -3,17 +3,13 @@ package com.example.mybatis.controller;
 
 import com.example.mybatis.Service.UserService;
 import com.example.mybatis.Service.UserinfoService;
-import com.example.mybatis.common.Result;
 import com.example.mybatis.common.ServerResult;
-import com.example.mybatis.entity.Userinfo;
+import com.example.mybatis.model.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-
-
-import static javafx.scene.input.KeyCode.T;
 
 @RestController
 public class MybatisController {
@@ -88,7 +84,7 @@ public class MybatisController {
      * 查单条 -sql-name
      * @param name
      * @return
-     * http://localhost:1111/userinfo/selectbyName-sql?name=%E5%93%88
+     * http://localhost:1111/userinfo/selectbyName-sql?name=哈
      */
     @GetMapping("/userinfo/selectbyName-sql")
     public Object userSelectBySQL(@RequestParam String name) {

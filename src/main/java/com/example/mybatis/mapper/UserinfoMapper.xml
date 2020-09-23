@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mybatis.mapper.UserinfoMapper">
-  <resultMap id="BaseResultMap" type="com.example.mybatis.entity.Userinfo">
+  <resultMap id="BaseResultMap" type="com.example.mybatis.model.Userinfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="sex" jdbcType="BIT" property="sex" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     id, name, sex, score, time
   </sql>
-  <select id="selectByExample" parameterType="com.example.mybatis.entity.UserinfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.mybatis.model.UserinfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,19 +94,19 @@
     delete from userinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.mybatis.entity.UserinfoExample">
+  <delete id="deleteByExample" parameterType="com.example.mybatis.model.UserinfoExample">
     delete from userinfo
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.mybatis.entity.Userinfo">
+  <insert id="insert" parameterType="com.example.mybatis.model.Userinfo">
     insert into userinfo (id, name, sex, score, 
       time)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{score,jdbcType=REAL}, 
       #{time,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.mybatis.entity.Userinfo">
+  <insert id="insertSelective" parameterType="com.example.mybatis.model.Userinfo">
     insert into userinfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -143,7 +143,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.mybatis.entity.UserinfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.example.mybatis.model.UserinfoExample" resultType="java.lang.Long">
     select count(*) from userinfo
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -183,7 +183,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.entity.Userinfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatis.model.Userinfo">
     update userinfo
     <set>
       <if test="name != null">
@@ -201,7 +201,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.entity.Userinfo">
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatis.model.Userinfo">
     update userinfo
     set name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=BIT},
