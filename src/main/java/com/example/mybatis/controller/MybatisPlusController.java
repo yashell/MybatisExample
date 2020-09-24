@@ -4,10 +4,14 @@ package com.example.mybatis.controller;
 import com.example.mybatis.Service.Impl.UserinfoServiceImpl;
 import com.example.mybatis.common.PageResult;
 import com.example.mybatis.common.ServerResult;
+import com.example.mybatis.model.Userinfo;
 import com.example.mybatis.model.UserinfoPlus;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * @author yangshi
  * @since 2020-09-06
  */
-@Api(description = "用户表的相关接口")
+@Api(tags = "用户表的相关接口",description = "类名为MybatisPlusController")
 @RestController
 @RequestMapping("/plus/user")
 public class MybatisPlusController {
@@ -32,10 +36,13 @@ public class MybatisPlusController {
             @ApiResponse(code=403,message="请求路径没有或页面跳转路径不对"),
             @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
     })
-//    @ApiImplicitParam(name="userinfoPlus",value="userinfoPlus实体",required=true,paramType="path")
-    public Object helloworld (@RequestBody UserinfoPlus userinfoPlus)
+
+    public ServerResult<PageResult<List<UserinfoPlus>>> helloworld (@RequestBody UserinfoPlus userinfoPlus)
     {
-        return "fds";
+
+        PageResult pageResult = userinfoServicePlus.userAll(1,10,"");
+        return ServerResult.defaultSuccess(pageResult);
+
     }
 
     /**
@@ -45,6 +52,7 @@ public class MybatisPlusController {
      * http://localhost:1111/plus/user/selectbyid?id=27
      */
     @GetMapping("/selectbyid")
+    @ApiIgnore
     public Object userinfoSelectByKey(@RequestParam int id) {
         UserinfoPlus userinfoPlus = userinfoServicePlus.selectById(id);
         ServerResult<Object> serverResult = ServerResult.defaultSuccess(userinfoPlus);
@@ -62,9 +70,9 @@ public class MybatisPlusController {
     @GetMapping("/all")
     @ApiOperation(value="获取用户列表", notes="这里边填写备注，用户可仔细阅读")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="current",defaultValue="1",value="当前第几页",required=false,paramType="path",dataType="Integer"),
-            @ApiImplicitParam(name="size",defaultValue="10",value="每页多少条数据",required=false,paramType="path",dataType="Integer"),
-            @ApiImplicitParam(name="name",defaultValue="",value="查询的姓名",required=false,paramType="path",dataType="String"),
+            @ApiImplicitParam(name="current",defaultValue="1",value="当前第几页",required=false,paramType="path",dataType="int"),
+            @ApiImplicitParam(name="size",defaultValue="10",value="每页多少条数据",required=false,paramType="path",dataType="int"),
+            @ApiImplicitParam(name="name",value="查询的姓名",required=false,paramType="path",dataType="String"),
     })
 
     @ApiResponses({
@@ -73,10 +81,9 @@ public class MybatisPlusController {
             @ApiResponse(code=403,message="请求路径没有或页面跳转路径不对"),
             @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
     })
-
-    public Object queryList(@RequestParam(value="current",defaultValue="1") Integer current, @RequestParam(value="size",defaultValue="10") Integer size , @RequestParam(value="name",defaultValue="") String name) {
+    public ServerResult<PageResult<List<UserinfoPlus>>> queryList(@RequestParam(value="current",defaultValue="1") Integer current, @RequestParam(value="size",defaultValue="10") Integer size , @RequestParam(value="name",defaultValue="") String name) {
         PageResult pageResult = userinfoServicePlus.userAll(current,size, name);
         ServerResult<Object> serverResult = ServerResult.defaultSuccess(pageResult);
-        return serverResult;
+        return ServerResult.defaultSuccess(pageResult);
     }
 }

@@ -1,11 +1,19 @@
 package com.example.mybatis.common;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
+@ApiModel(value = "返回结果实体",description = "200成功")
 public class ServerResult<T> implements Serializable {
+    @ApiModelProperty(value="返回结果",required=true,name="data")
     private T data;
+    @ApiModelProperty(value="返回状态",required=true,name="success",example = "true")
     private boolean success;
+    @ApiModelProperty(value="返回状态代码",required=true,name="code",example = "200")
     private int code;
+    @ApiModelProperty(value="返回信息",required=true,name="message",example = "操作成功")
     private String message;
 
     private ServerResult() {}

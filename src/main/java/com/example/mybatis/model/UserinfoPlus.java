@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
@@ -18,6 +20,7 @@ import java.time.LocalDateTime;
  * @since 2020-09-06
  */
 @TableName("userinfo")
+@ApiModel(value = "用户表",description = "实体名为UserinfoPlus")
 public class UserinfoPlus implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -23,6 +23,14 @@ public class SwaggerConfig {
                         .contact(new Contact("啊啊啊啊","blog.csdn.net","aaa@gmail.com"))
                         .license("The Apache License")
                         .licenseUrl("http://www.baidu.com")
-                        .build());
+                        .build())
+                .select()
+                //包路径
+                .apis(RequestHandlerSelectors.basePackage("com.example.mybatis"))
+                //过滤的接口
+                .paths(PathSelectors.any())
+                .build();
+
+
     }
 }
