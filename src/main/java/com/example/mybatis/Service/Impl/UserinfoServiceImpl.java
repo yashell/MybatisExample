@@ -51,7 +51,7 @@ public class UserinfoServiceImpl implements UserinfoService {
     public PageResult userAll (int current , int size , String name) {
         IPage<UserinfoPlus> userPage = new Page<>(current, size);
         userPage = userinfoMapperPlus.selectPage(userPage,new QueryWrapper<UserinfoPlus>()
-                .like("name", name)
+                .like("name", name).eq("isdel",0).orderByDesc("id")
         );
         List<UserinfoPlus> list = userPage.getRecords();
         PageResult pageResult = new PageResult();

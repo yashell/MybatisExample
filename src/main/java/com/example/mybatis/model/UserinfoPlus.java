@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author yangshi
@@ -45,7 +46,22 @@ public class UserinfoPlus implements Serializable {
 
     @ApiModelProperty(value="时间(填null或不写这个参数，由后台生成)",hidden=true,name="time",example="")
     @TableField("time")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime time;
+
+
+    @ApiModelProperty(value="删除标识(0是正常显示，1是删除)",name="time",example="0")
+    @TableField("isdel")
+    private Integer isdel;
+
+
+    public Integer getIsdel() {
+        return isdel;
+    }
+
+    public void setIsdel(Integer isdel) {
+        this.isdel = isdel;
+    }
 
     public Integer getId() {
         return id;

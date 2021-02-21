@@ -27,7 +27,7 @@ import java.util.List;
 public class MybatisPlusController {
     @Autowired
     private UserinfoServiceImpl userinfoServicePlus;
-
+  
     @PostMapping("/helloworld")
     @ApiOperation(value="测试传实体且返回实体", notes="这里边填写备注，用户可仔细阅读")
     @ApiResponses({

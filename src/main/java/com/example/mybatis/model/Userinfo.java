@@ -13,6 +13,10 @@ public class Userinfo {
 
     private Date time;
 
+    private Integer isdel;
+
+
+
     public Integer getId() {
         return id;
     }
@@ -20,6 +24,7 @@ public class Userinfo {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getName() {
         return name;
@@ -51,5 +56,13 @@ public class Userinfo {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Integer getIsdel() {
+        return isdel;
+    }
+
+    public void setIsdel(Integer isdel) {
+        this.isdel = isdel;
     }
 }
